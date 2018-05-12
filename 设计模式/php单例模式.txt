@@ -1,0 +1,31 @@
+﻿<?php
+class Single{
+    protected static $_obj = null;
+    protected $i=0;
+    final protected function __construct() {
+        
+    }
+    static function getInstance(){
+        if(self::$_obj === null){
+            self::$_obj = new self();
+        }
+        return self::$_obj;
+        
+    }
+    
+    final protected function __clone() {
+        
+    }
+    
+    function test(){
+       $this->i = 'sql';
+    }
+    function printf(){
+        echo $this->i;
+    }
+}
+$obj = Single::getInstance();
+$obj->test();
+$obj->printf();
+$obj2 = Single::getInstance();
+$obj->printf()
