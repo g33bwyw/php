@@ -1,0 +1,63 @@
+<?php
+/**
+ * 接口模式
+ * Created by PhpStorm.
+ * User: 王亚伟
+ * Date: 2018/5/12 0012
+ * Time: 16:47
+ */
+//定义数据类接口标准
+interface DB{
+    function conn();
+}
+//服务端实现了二个方法
+class MysqlDb implements DB{
+    function conn(){
+        echo "mysql连接成功";
+    }
+}
+class Sqllite implements DB{
+    function conn(){
+        echo "Sqllite连接成功";
+    }
+}
+
+
+//客户端此做法有弊端，如果增加一个DB连接方式就需要修改服务端代码
+class Server {
+    public static function call($type){
+        if($type == 'mysql'){
+            return new MysqlDb();
+        }elseif($type == 'mysql'){
+            return new Sqllite();
+        }else{
+            throw new Exception("type不存在");
+        }
+    }
+}
+
+//try{
+//    Server::call("123");
+//}catch (Exception $e){
+//     echo $e->getMessage();
+//}
+
+
+//代码修改权限禁止，扩展权限放开
+interface DbFactory{
+    function createDB();
+}
+
+class mysqlFactoty implements DbFactory{
+    function createDB(){
+        return new MysqlDb();
+    }
+}
+class SqlliteFactoty implements DbFactory{
+    function createDB(){
+        return new Sqllite();
+    }
+}
+
+(new mysqlFactoty())->createDB()->conn();
+(new SqlliteFactoty())->createDB()->conn();
