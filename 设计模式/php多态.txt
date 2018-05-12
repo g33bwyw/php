@@ -1,0 +1,45 @@
+<?php
+/**
+ * 实现一个多态类
+ * Created by PhpStorm.
+ * User: 王亚伟
+ * Date: 2018/5/12 0012
+ * Time: 16:29
+ */
+abstract class People{
+    abstract public function respone();
+}
+
+class Teacher extends People{
+    function respone()
+    {
+        echo "老师的职责是教书";
+        // TODO: Implement respone() method.
+    }
+}
+class Student extends People{
+    function respone()
+    {
+        echo "学生的职责是读书";
+        // TODO: Implement respone() method.
+    }
+}
+
+class Phper {
+    function respone()
+    {
+        echo "php是世界上最好的语言";
+        // TODO: Implement respone() method.
+    }
+}
+
+class Client {
+    static function call(People $worker){
+        return $worker;
+    }
+}
+
+Client::call(new Teacher())->respone();
+echo "<br/>";
+Client::call(new Student())->respone();
+//Client::call(new Phper())->respone();
