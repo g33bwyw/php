@@ -1,0 +1,12 @@
+HomeStead导入box使用说明
+
+1.下载box,通过迅雷下载
+  https://app.vagrantup.com/laravel/boxes/homestead/versions/6.1.0/providers/virtualbox.box
+  https://vagrantcloud.com/laravel/boxes/homestead/versions/6.1.0/providers/virtualbox.box
+2.添加box 
+  vagrant box add laravel/homestead ./Homestead-6.3.0.box
+3.进入C:\Users\Administrator\.vagrant.d\boxes\laravel-VAGRANTSLASH-homestead
+    修改文件夹0为box的版本号同时添加metadata_url文件，metadata¬_url文件内容:https://app.vagrantup.com/laravel/boxes/homestead
+4. git clone https://github.com/laravel/homestead.git ./Homestead
+    进入homestead文件中进行初始化，执行命令bash init.sh
+6.vagrant up启动
